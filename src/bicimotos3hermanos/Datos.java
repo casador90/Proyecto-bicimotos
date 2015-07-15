@@ -14,8 +14,9 @@ public class Datos {
   private String apellidos;
   private String tel;
   private String correo;
-
   private String ciudad;
+  private String rfc;
+  
     public Datos(String nombre, String apellidos, String tel, String correo, String ciudad, String rfc) {
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -25,7 +26,7 @@ public class Datos {
         this.rfc = rfc;
     }
 
-private String rfc;
+
     public Datos() {
     }
 
