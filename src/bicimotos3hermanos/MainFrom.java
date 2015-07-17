@@ -43,7 +43,6 @@ public class MainFrom extends javax.swing.JFrame {
         CursorHand();
         System.out.println("tu resolucion es " + screenSize.width + "x" + screenSize.height);
         this.setSize(screenSize.width, screenSize.height);
-        System.out.println("int "+getExtendedState());
         Panel.setBackground(new Color(0, 0, 0, 10));;
         barraTitulo.setBackground(new Color(204,204,204));
         colorActual=barraTitulo.getBackground();
