@@ -7,6 +7,7 @@ package bicimotos3hermanos;
 
 import background.Background;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import static java.awt.Frame.ICONIFIED;
@@ -16,6 +17,8 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 
 /**
  *
@@ -31,6 +34,8 @@ public class MainFrom extends javax.swing.JFrame {
     private boolean b = true;
     private  int x, y;
     private Color colorActual;
+    private JMenuItem Aj,mn,cer;
+    private JPopupMenu menu;
     public MainFrom() {
         setUndecorated(true);
         setContentPane(background);
@@ -42,37 +47,56 @@ public class MainFrom extends javax.swing.JFrame {
         Panel.setBackground(new Color(0, 0, 0, 10));;
         barraTitulo.setBackground(new Color(204,204,204));
         colorActual=barraTitulo.getBackground();
-        cerrar();
-        Minimizar();
-        Restaurar();
+        eventos();
+        MenuPanel();
+        menu = new JPopupMenu();
+        Aj= new JMenuItem();
+        mn= new JMenuItem();
+        cer= new JMenuItem();
     }
-
+    
     public void CursorHand() {
         jButton1.setCursor(new Cursor(Cursor.HAND_CURSOR));
         jButton2.setCursor(new Cursor(Cursor.HAND_CURSOR));
         jButton3.setCursor(new Cursor(Cursor.HAND_CURSOR));
         jButton5.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btCerrar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btMn.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btMx.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btMinimizar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btAjustar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btMenuPanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
-
-    public void cerrar() {
-        btCerrar.addActionListener(new ActionListener() {
+    public void eventos(){
+         btCerrar.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                cerrar();
             }
         });
-    }
-
-    public void Restaurar() {
-        btMx.addActionListener(new ActionListener() {
+        
+         btAjustar.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (b) {
+                Ajustar();
+            }
+        });
+         btMinimizar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Minimizar();
+            }
+        });
+       
+        
+    }
+    public void cerrar() {
+        System.exit(0);
+    }
+
+    public void Ajustar() {
+        if (b) {
                     setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
                     b = false;
                 } else {
@@ -80,29 +104,64 @@ public class MainFrom extends javax.swing.JFrame {
                     setLocationRelativeTo(null);
                     b = true;
                 }
-            }
-        });
     }
 
     public void Minimizar() {
-        btMn.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setExtendedState(ICONIFIED);
+        setExtendedState(ICONIFIED);
 
                 if (b == false) {
                     setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
                     b = false;
-                } else {
+                } else {        
                     setSize(screenSize);
                     b = true;
                 }
+    }
+    public void MenuPanel(){
+       
+         btMenuPanel.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Minimizar_Azul.png")));
+                mn.addActionListener(new ActionListener() {
+
+                @Override
+                 public void actionPerformed(ActionEvent e) {
+                 Minimizar();
+                }
+                });
+                mn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                menu.add(mn);
+                Aj.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/ajustar_Azul.png")));
+                Aj.addActionListener(new ActionListener() {
+
+                 @Override
+                  public void actionPerformed(ActionEvent e) {
+                  Ajustar();
+                 }
+                 });
+                Aj.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                menu.add(Aj);
+                cer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Cerrar_Rojo.png")));
+                cer.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                cerrar();
+                 }
+                });
+                cer.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                menu.add(cer);
+                Component b = (Component)e.getSource();
+                Point p=b.getLocationOnScreen();
+                 
+                menu.show(btMenuPanel, 0, 20);
+               // menu.setLocation(p., y);
             }
         });
     }
     
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -117,16 +176,17 @@ public class MainFrom extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         barraTitulo = new javax.swing.JPanel();
-        btMn = new javax.swing.JButton();
-        btMx = new javax.swing.JButton();
+        btMinimizar = new javax.swing.JButton();
+        btAjustar = new javax.swing.JButton();
         btCerrar = new javax.swing.JButton();
+        btMenuPanel = new javax.swing.JButton();
         Panel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1 - copia - copia.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1_50.png"))); // NOI18N
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -192,26 +252,26 @@ public class MainFrom extends javax.swing.JFrame {
             }
         });
 
-        btMn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Minimizar_Gris.png"))); // NOI18N
-        btMn.setBorderPainted(false);
-        btMn.setContentAreaFilled(false);
-        btMn.setFocusPainted(false);
-        btMn.setFocusable(false);
-        btMn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btMn.setPreferredSize(new java.awt.Dimension(20, 20));
-        btMn.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Minimizar_Verde.png"))); // NOI18N
-        btMn.setRequestFocusEnabled(false);
-        btMn.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Minimizar_Azul.png"))); // NOI18N
+        btMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Minimizar_Gris.png"))); // NOI18N
+        btMinimizar.setBorderPainted(false);
+        btMinimizar.setContentAreaFilled(false);
+        btMinimizar.setFocusPainted(false);
+        btMinimizar.setFocusable(false);
+        btMinimizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btMinimizar.setPreferredSize(new java.awt.Dimension(20, 20));
+        btMinimizar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Minimizar_Verde.png"))); // NOI18N
+        btMinimizar.setRequestFocusEnabled(false);
+        btMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Minimizar_Azul.png"))); // NOI18N
 
-        btMx.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/ajustar_Gris.png"))); // NOI18N
-        btMx.setBorderPainted(false);
-        btMx.setContentAreaFilled(false);
-        btMx.setFocusPainted(false);
-        btMx.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btMx.setPreferredSize(new java.awt.Dimension(20, 20));
-        btMx.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/ajustar_Verde.png"))); // NOI18N
-        btMx.setRequestFocusEnabled(false);
-        btMx.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/ajustar_Azul.png"))); // NOI18N
+        btAjustar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/ajustar_Gris.png"))); // NOI18N
+        btAjustar.setBorderPainted(false);
+        btAjustar.setContentAreaFilled(false);
+        btAjustar.setFocusPainted(false);
+        btAjustar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btAjustar.setPreferredSize(new java.awt.Dimension(20, 20));
+        btAjustar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/ajustar_Verde.png"))); // NOI18N
+        btAjustar.setRequestFocusEnabled(false);
+        btAjustar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/ajustar_Azul.png"))); // NOI18N
 
         btCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Cerrar_gris.png"))); // NOI18N
         btCerrar.setBorderPainted(false);
@@ -223,27 +283,37 @@ public class MainFrom extends javax.swing.JFrame {
         btCerrar.setRequestFocusEnabled(false);
         btCerrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Cerrar_Rojo.png"))); // NOI18N
 
+        btMenuPanel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Maximizar_Gris.png"))); // NOI18N
+        btMenuPanel.setBorderPainted(false);
+        btMenuPanel.setContentAreaFilled(false);
+        btMenuPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btMenuPanel.setFocusPainted(false);
+        btMenuPanel.setFocusable(false);
+        btMenuPanel.setPreferredSize(new java.awt.Dimension(20, 20));
+        btMenuPanel.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Maximizar_verde.png"))); // NOI18N
+        btMenuPanel.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Maximizar_Azul.png"))); // NOI18N
+
         javax.swing.GroupLayout barraTituloLayout = new javax.swing.GroupLayout(barraTitulo);
         barraTitulo.setLayout(barraTituloLayout);
         barraTituloLayout.setHorizontalGroup(
             barraTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, barraTituloLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btMn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btMenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btMx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btAjustar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         barraTituloLayout.setVerticalGroup(
             barraTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, barraTituloLayout.createSequentialGroup()
-                .addGap(0, 12, Short.MAX_VALUE)
-                .addGroup(barraTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btMn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btMx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(btMenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(barraTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(btMinimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btAjustar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btCerrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
@@ -277,7 +347,7 @@ public class MainFrom extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(barraTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
+                .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -287,7 +357,7 @@ public class MainFrom extends javax.swing.JFrame {
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(54, 54, 54)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(22, Short.MAX_VALUE))
+                        .addContainerGap(32, Short.MAX_VALUE))
                     .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
@@ -299,9 +369,14 @@ public class MainFrom extends javax.swing.JFrame {
         y = evt.getY();
         this.setCursor(new Cursor(Cursor.MOVE_CURSOR));
         barraTitulo.setBackground(new Color(75,144,189));
-        btMn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Minimizar_Verde.png")));
-        btMx.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Maximizar_verde.png")));
+        btMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Minimizar_Verde.png")));
+        btAjustar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/ajustar_Verde.png")));
+        btMenuPanel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Maximizar_verde.png")));
         btCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Cerrar_Rojo.png")));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1.png")));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_2.png")));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_3.png")));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_7.png")));
     }//GEN-LAST:event_barraTituloMousePressed
 
     private void barraTituloMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barraTituloMouseDragged
@@ -312,9 +387,14 @@ public class MainFrom extends javax.swing.JFrame {
     private void barraTituloMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barraTituloMouseReleased
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         barraTitulo.setBackground(colorActual);
-        btMn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Minimizar_Gris.png")));
-        btMx.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Maximizar_Gris.png")));
+        btMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Minimizar_Gris.png")));
+        btAjustar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/ajustar_Gris.png")));
+        btMenuPanel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Maximizar_Gris.png")));
         btCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Cerrar_gris.png")));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1_50.png")));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_2 - copia - copia.png")));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_3 - copia - copia.png")));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_7 - copia - copia.png")));
     }//GEN-LAST:event_barraTituloMouseReleased
 
     /**
@@ -355,12 +435,14 @@ public class MainFrom extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Panel;
     private javax.swing.JPanel barraTitulo;
+    private javax.swing.JButton btAjustar;
     private javax.swing.JButton btCerrar;
-    private javax.swing.JButton btMn;
-    private javax.swing.JButton btMx;
+    private javax.swing.JButton btMenuPanel;
+    private javax.swing.JButton btMinimizar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     // End of variables declaration//GEN-END:variables
+    
 }
