@@ -15,7 +15,8 @@ public class Bicimotos3hermanos {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        MainFrom principal = new MainFrom();
+        principal.setVisible(true);
     }
     
 }
