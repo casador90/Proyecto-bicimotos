@@ -6,6 +6,7 @@
 package bicimotos3hermanos;
 
 import background.Background;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -29,13 +30,14 @@ public class MainFrom extends javax.swing.JFrame {
     /**
      * Creates new form MainFrom
      */
-    Background background = new Background("/background/fondo2.png");
-    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    private Background background = new Background("/background/fondo2.png");
+    private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private boolean b = true;
-    private  int x, y;
+    private int x, y;
     private Color colorActual;
     private JMenuItem Aj,mn,cer;
     private JPopupMenu menu;
+    
     public MainFrom() {
         setUndecorated(true);
         setContentPane(background);
@@ -43,7 +45,8 @@ public class MainFrom extends javax.swing.JFrame {
         CursorHand();
         System.out.println("tu resolucion es " + screenSize.width + "x" + screenSize.height);
         this.setSize(screenSize.width, screenSize.height);
-        Panel.setBackground(new Color(0, 0, 0, 10));;
+        Panel.setBackground(new Color(0, 0, 0, 10));
+        //Panel.setLocation(0, 0);//setSize(822, 749);
         barraTitulo.setBackground(new Color(204,204,204));
         colorActual=barraTitulo.getBackground();
         eventos();
@@ -58,7 +61,7 @@ public class MainFrom extends javax.swing.JFrame {
         jButton1.setCursor(new Cursor(Cursor.HAND_CURSOR));
         jButton2.setCursor(new Cursor(Cursor.HAND_CURSOR));
         jButton3.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        jButton5.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btCliente.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btCerrar.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btMinimizar.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btAjustar.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -85,6 +88,20 @@ public class MainFrom extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Minimizar();
+            }
+        });
+          btCliente.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                registros reg = new registros();
+                int witdh = Panel.getWidth();
+                int height = Panel.getHeight();
+                Panel.setLayout(new BorderLayout());//Panel.setSize(822, 749);
+                reg.setPreferredSize(new Dimension(witdh, height));
+                Panel.add("Center", reg);
+                Panel.updateUI();
+                Panel.validate();
             }
         });
        
@@ -148,7 +165,7 @@ public class MainFrom extends javax.swing.JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                 cerrar();
-                 }
+                }
                 });
                 cer.setCursor(new Cursor(Cursor.HAND_CURSOR));
                 menu.add(cer);
@@ -156,7 +173,6 @@ public class MainFrom extends javax.swing.JFrame {
                 Point p=b.getLocationOnScreen();
                  
                 menu.show(btMenuPanel, 0, 20);
-               // menu.setLocation(p., y);
             }
         });
     }
@@ -170,72 +186,22 @@ public class MainFrom extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         barraTitulo = new javax.swing.JPanel();
         btMinimizar = new javax.swing.JButton();
         btAjustar = new javax.swing.JButton();
         btCerrar = new javax.swing.JButton();
         btMenuPanel = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        btCliente = new javax.swing.JButton();
         Panel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1_50.png"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton1.setFocusPainted(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setIconTextGap(1);
-        jButton1.setInheritsPopupMenu(true);
-        jButton1.setPreferredSize(new java.awt.Dimension(70, 70));
-        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1 - copia.png"))); // NOI18N
-        jButton1.setRequestFocusEnabled(false);
-        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1.png"))); // NOI18N
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_2 - copia - copia.png"))); // NOI18N
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton2.setFocusPainted(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setIconTextGap(1);
-        jButton2.setInheritsPopupMenu(true);
-        jButton2.setPreferredSize(new java.awt.Dimension(70, 70));
-        jButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_2 - copia.png"))); // NOI18N
-        jButton2.setRequestFocusEnabled(false);
-        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_2.png"))); // NOI18N
-
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_3 - copia - copia.png"))); // NOI18N
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton3.setFocusPainted(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setIconTextGap(1);
-        jButton3.setInheritsPopupMenu(true);
-        jButton3.setPreferredSize(new java.awt.Dimension(70, 70));
-        jButton3.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_3 - copia.png"))); // NOI18N
-        jButton3.setRequestFocusEnabled(false);
-        jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_3.png"))); // NOI18N
-
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_7 - copia - copia.png"))); // NOI18N
-        jButton5.setBorderPainted(false);
-        jButton5.setContentAreaFilled(false);
-        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton5.setFocusPainted(false);
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setIconTextGap(1);
-        jButton5.setInheritsPopupMenu(true);
-        jButton5.setPreferredSize(new java.awt.Dimension(70, 70));
-        jButton5.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_7 - copia.png"))); // NOI18N
-        jButton5.setRequestFocusEnabled(false);
-        jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_7.png"))); // NOI18N
 
         barraTitulo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -315,11 +281,63 @@ public class MainFrom extends javax.swing.JFrame {
                 .addComponent(btCerrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1_50.png"))); // NOI18N
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton1.setFocusPainted(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setIconTextGap(1);
+        jButton1.setInheritsPopupMenu(true);
+        jButton1.setPreferredSize(new java.awt.Dimension(70, 70));
+        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1 - copia.png"))); // NOI18N
+        jButton1.setRequestFocusEnabled(false);
+        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1.png"))); // NOI18N
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_2 - copia - copia.png"))); // NOI18N
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton2.setFocusPainted(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setIconTextGap(1);
+        jButton2.setInheritsPopupMenu(true);
+        jButton2.setPreferredSize(new java.awt.Dimension(70, 70));
+        jButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_2 - copia.png"))); // NOI18N
+        jButton2.setRequestFocusEnabled(false);
+        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_2.png"))); // NOI18N
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_3 - copia - copia.png"))); // NOI18N
+        jButton3.setBorderPainted(false);
+        jButton3.setContentAreaFilled(false);
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton3.setFocusPainted(false);
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setIconTextGap(1);
+        jButton3.setInheritsPopupMenu(true);
+        jButton3.setPreferredSize(new java.awt.Dimension(70, 70));
+        jButton3.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_3 - copia.png"))); // NOI18N
+        jButton3.setRequestFocusEnabled(false);
+        jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_3.png"))); // NOI18N
+
+        btCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_7 - copia - copia.png"))); // NOI18N
+        btCliente.setBorderPainted(false);
+        btCliente.setContentAreaFilled(false);
+        btCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btCliente.setFocusPainted(false);
+        btCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btCliente.setIconTextGap(1);
+        btCliente.setInheritsPopupMenu(true);
+        btCliente.setPreferredSize(new java.awt.Dimension(70, 70));
+        btCliente.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_7 - copia.png"))); // NOI18N
+        btCliente.setRequestFocusEnabled(false);
+        btCliente.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_7.png"))); // NOI18N
+
         javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
         Panel.setLayout(PanelLayout);
         PanelLayout.setHorizontalGroup(
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 677, Short.MAX_VALUE)
+            .addGap(0, 457, Short.MAX_VALUE)
         );
         PanelLayout.setVerticalGroup(
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,34 +348,44 @@ public class MainFrom extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(barraTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
-            .addComponent(barraTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(barraTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)
+                        .addComponent(btCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
+                        .addGap(26, 26, 26)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(32, Short.MAX_VALUE))
-                    .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 89, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
 
         pack();
@@ -375,7 +403,7 @@ public class MainFrom extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1.png")));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_2.png")));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_3.png")));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_7.png")));
+        btCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_7.png")));
     }//GEN-LAST:event_barraTituloMousePressed
 
     private void barraTituloMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barraTituloMouseDragged
@@ -393,7 +421,7 @@ public class MainFrom extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1_50.png")));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_2 - copia - copia.png")));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_3 - copia - copia.png")));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_7 - copia - copia.png")));
+        btCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_7 - copia - copia.png")));
     }//GEN-LAST:event_barraTituloMouseReleased
 
     /**
@@ -436,12 +464,14 @@ public class MainFrom extends javax.swing.JFrame {
     private javax.swing.JPanel barraTitulo;
     private javax.swing.JButton btAjustar;
     private javax.swing.JButton btCerrar;
+    private javax.swing.JButton btCliente;
     private javax.swing.JButton btMenuPanel;
     private javax.swing.JButton btMinimizar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
     
 }

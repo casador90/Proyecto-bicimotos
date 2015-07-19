@@ -14,22 +14,28 @@ public class Datos {
   private String apellidos;
   private String tel;
   private String correo;
+  private String direccion;
   private String ciudad;
   private String rfc;
   
-    public Datos(String nombre, String apellidos, String tel, String correo, String ciudad, String rfc) {
+  
+   
+    
+    public Datos() {
+    }
+
+    
+    public Datos(String nombre, String tel, String correo, String direccion, String ciudad, String rfc) {
         this.nombre = nombre;
-        this.apellidos = apellidos;
         this.tel = tel;
         this.correo = correo;
+        this.direccion = direccion;
         this.ciudad = ciudad;
         this.rfc = rfc;
     }
 
-
-    public Datos() {
-    }
-
+   
+    
     /**
      * @return the nombre
      */
@@ -112,6 +118,13 @@ public class Datos {
      */
     public void setRfc(String rfc) {
         this.rfc = rfc;
+    }
+     public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
 }
