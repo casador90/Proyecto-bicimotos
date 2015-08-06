@@ -1,0 +1,846 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d4718a86-1608-47d1-ae24-58f07294f6b1">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="74"/>
+	<parameter name="Orden" class="java.lang.Integer"/>
+	<parameter name="Fecha" class="java.lang.String"/>
+	<parameter name="Hora" class="java.lang.String"/>
+	<parameter name="Equipo" class="java.lang.String"/>
+	<parameter name="Serie" class="java.lang.String"/>
+	<parameter name="Motor" class="java.lang.String"/>
+	<parameter name="Kilometro" class="java.lang.String"/>
+	<parameter name="Placas" class="java.lang.String"/>
+	<parameter name="Observaciones" class="java.lang.String"/>
+	<parameter name="Nombre" class="java.lang.String"/>
+	<parameter name="Direccion" class="java.lang.String"/>
+	<parameter name="Ciudad" class="java.lang.String"/>
+	<parameter name="Rfc" class="java.lang.String"/>
+	<parameter name="Telefono" class="java.lang.String"/>
+	<parameter name="claxon" class="java.lang.String"/>
+	<field name="Hora" class="java.lang.String"/>
+	<field name="Fecha" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="80" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="24" width="140" height="50" uuid="b37b8d9f-6348-48fa-9bf9-62658f61790b"/>
+				<imageExpression><![CDATA["C:\\Users\\jonatan\\Documents\\NetBeansProjects\\Aplicacion\\src\\reports\\logo_bicimoto.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Opaque" x="102" y="0" width="192" height="20" uuid="5247342b-3caa-44d6-8dc6-df77cdca6310"/>
+				<textElement>
+					<font size="15" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Bici-moto Refacccionaria ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="294" y="0" width="174" height="29" uuid="1383ad4d-275c-4016-b96c-3f6e231c37f7"/>
+				<textElement>
+					<font size="16" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA["TRES HERMANOS ']]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="181" y="20" width="194" height="20" uuid="dc74ec27-65b5-48a0-b512-9661cfafaf51"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MARIO ALBERTO CEH CAMARA ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="125" y="33" width="152" height="20" uuid="2f39e7fb-0dc6-4ea2-b208-7d55890ce961"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[R.F.C.: CECM951010838]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="33" width="172" height="20" uuid="df98b4f0-c076-4b4a-8dd9-168613e9d4af"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[CURP: CECM951010HCCHMR02]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="101" y="45" width="362" height="20" uuid="36902c92-db9d-461e-b82c-2e76444af4cd"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Calle Chihuahua no. 13 entre 2da Priv. de Tamaulipas y S/R Fte. Gasolinera San]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="57" width="354" height="20" uuid="6a373456-8e23-4395-bc58-54a84fa40e75"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Pedro Col. Santa Ana C:P 24050 TEL. 12 7 12 49 San Francisco de Campeche]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="464" y="24" width="94" height="41" uuid="204ca973-973d-49e5-8640-08d05ba7e6a6"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="464" y="25" width="94" height="20" backcolor="#FFCCCC" uuid="eff53fa1-5929-4e7f-aeb5-fd172befc1c6"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="465" y="25" width="100" height="20" uuid="267857b6-d9bf-4053-ae6d-9eb7480e0b11"/>
+				<text><![CDATA[Orden de servicio No]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="465" y="45" width="93" height="20" uuid="052e9a20-63e3-4a63-b9b8-43e7e41e4683"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$P{Orden}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="78" splitType="Stretch">
+			<rectangle radius="4">
+				<reportElement x="0" y="3" width="555" height="71" uuid="bc66428f-05c1-4d41-9a05-43f2fc0c4f96"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="6" width="52" height="20" uuid="a309265b-158c-40fc-9266-8d393fbf396e"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="21" width="52" height="20" uuid="4b631c57-ab65-4d5a-8297-99a71bed4631"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Dirección :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="35" width="52" height="20" uuid="5c689c70-e08a-4017-ab02-20f2d8b8155c"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Ciudad: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="264" y="35" width="35" height="20" uuid="466df0f7-4da7-4d61-81d7-2ca99ec3dd01"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[R.F.C]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="430" y="32" width="20" height="20" uuid="9d77fe97-1737-4714-8149-a524a5294173"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Tel.:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="11" y="52" width="366" height="20" uuid="193390a7-ec52-40ef-9181-0eb31c8c29ea"/>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$P{Fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="52" width="129" height="20" uuid="e4ee53a7-b508-4c3d-9220-a0423159912c"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$P{Hora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="62" y="6" width="293" height="20" uuid="6bec521b-8666-4a11-862b-5e89994a5e6d"/>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$P{Nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="62" y="21" width="293" height="20" uuid="631909a1-3846-46c4-98ec-683091b6c3d6"/>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$P{Direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="62" y="35" width="202" height="20" uuid="14ce2bc4-85f0-47de-88cd-d49c7fdded58"/>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$P{Ciudad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="298" y="35" width="100" height="20" uuid="2f3ff026-4b78-4dc5-b0a3-bd90022c4fc9"/>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$P{Rfc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="32" width="100" height="20" uuid="cd34eb7c-23c6-4568-8f1d-cee679e71ddc"/>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$P{Telefono}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="69" splitType="Stretch">
+			<staticText>
+				<reportElement x="3" y="2" width="41" height="20" uuid="db102494-99f5-4236-9fdb-ec1118d35f21"/>
+				<text><![CDATA[Equipo: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="114" y="1" width="32" height="20" uuid="8485e802-c374-4064-a916-0c1008b88f4a"/>
+				<text><![CDATA[Serie:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="221" y="1" width="33" height="20" uuid="655896e4-e4f9-497d-844e-f39e2ea62910"/>
+				<text><![CDATA[Motor:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="346" y="1" width="55" height="20" uuid="de304e46-d09e-4782-b527-745117a7ea5c"/>
+				<text><![CDATA[Kilometraje:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="453" y="1" width="40" height="20" uuid="7898c730-5a2a-451d-9cec-4c7d3c72d904"/>
+				<text><![CDATA[Placas:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="18" width="76" height="20" uuid="d332ff01-ff77-4673-8683-92bafcbab9b6"/>
+				<text><![CDATA[Observaciones:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="81" y="17" width="474" height="50" uuid="6464d482-16be-4fe0-84a5-fb60e5b7dfd0"/>
+			</rectangle>
+			<textField>
+				<reportElement x="45" y="3" width="86" height="20" uuid="d40ded38-dc36-49f6-b6e8-cfd11eef4991"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Equipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="147" y="2" width="77" height="20" uuid="f364e3b2-0c33-4b0d-83e7-4a264c7d359c"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Serie}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="255" y="2" width="100" height="20" uuid="3e1c69ca-7db8-4867-bfd5-5b876b9785f2"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Motor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="398" y="3" width="82" height="20" uuid="500daa46-c468-4e64-afec-a60949288cf0"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Kilometro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="494" y="3" width="61" height="20" uuid="87de6225-9db1-42f7-af50-6172ed68337d"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Placas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="81" y="23" width="468" height="31" uuid="006b1b81-1775-4b0b-94e0-e2da92fe3dae"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Observaciones}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="298" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="1" width="555" height="1" uuid="c1c84161-1ea5-4687-8193-e7ddfb1250d0"/>
+			</line>
+			<staticText>
+				<reportElement x="46" y="3" width="158" height="15" uuid="4a856969-daa2-4b14-92e5-84c8ddfd257b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[INVENTARIO DEL VEHÍCULO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="30" width="109" height="16" uuid="817fa227-aad7-4dac-9d11-6b6a9ea22864"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[-ESPEJO IZQUIERDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="42" width="100" height="16" uuid="836e9a2e-9e21-4261-9545-9758e4f27e6f"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[-ESPEJO DERECHO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="54" width="100" height="16" uuid="76636c2b-55f8-4ccc-9477-e7ca37c96129"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[-ASIENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="66" width="100" height="16" uuid="36697751-d352-4a4b-8dec-b4023675523a"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[-FARO DELANTERO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="92" width="151" height="14" uuid="d0a75c99-aaa1-4a07-a0c3-2f8e1a44764a"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[-DIRECCION IZQ DELANTERA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="103" width="151" height="15" uuid="c238e973-c45a-44b3-b7ea-186928493ca5"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[-DIRECCIONAL DER. DELANTERA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="115" width="145" height="16" uuid="5314ae10-ea7d-410c-9111-83c365031d3c"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[-DIRECCIONAL IZQ. TRASERA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="128" width="150" height="14" uuid="5abca169-e16a-47ee-ad37-5189a28c3e6b"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[-DIRECCIONAL DER. TRASERA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="140" width="144" height="14" uuid="9ef1aed5-4173-4bb5-8e1c-1f67b2002b59"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[-CUBIERTAS COMPLETAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="293" y="31" width="143" height="16" uuid="7f6cecdb-8e74-4d73-992f-5ab5223e2943"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[-ESPEJO IZQUIERDO ROTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="293" y="43" width="143" height="16" uuid="a83d1358-89e4-4a8d-9c8a-a4c4730bb516"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[-ESPEJO DERECHO ROTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="293" y="55" width="100" height="16" uuid="08a699e7-5926-4c9f-8035-cba6f9e4af17"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[-ASIENTO ROTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="293" y="67" width="154" height="16" uuid="0282768a-c187-47ed-a0ee-2b93dc79b11a"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[-FARO DELANDERO FUNCIONA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="293" y="116" width="183" height="16" uuid="a18c0ca2-f5b0-4cca-8e72-acc8d935f2d8"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[-CUBIERTAS GOLPEADAS O DAÑADAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="293" y="103" width="183" height="16" uuid="dcaef4b3-db6f-4592-8f04-d9aaf1b84e62"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[-DIRECC. DER. DELAN. TRAS FUNCIONA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="293" y="79" width="143" height="16" uuid="b33f54fa-74a3-48d0-8c59-251746b2aa64"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[-FOCO DE STOP FUNCIONA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="293" y="91" width="183" height="16" uuid="336e3ff2-a3c5-478e-b8cf-a260bae5bb4b"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[-DIRECC. IZQ. DELAN. TRAS. FUNCIONA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="292" y="127" width="184" height="16" uuid="30eda52b-159b-4095-a9ea-0a3726bf0c57"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[-TANQUE DE GASOLINA GOLPEADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="307" y="3" width="158" height="15" uuid="94525954-2f5d-424e-93ed-527bdb2fa61e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONDICIONES DEL VEHÍCULO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="152" width="115" height="14" uuid="095abba7-8037-4830-a692-97b25a185878"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[-TAPON DE GASOLINA]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Bottom">
+				<reportElement x="380" y="142" width="161" height="50" uuid="90061ec3-af11-429d-9c12-c98ba646ae37"/>
+				<imageExpression><![CDATA["C:\\Users\\jonatan\\Documents\\NetBeansProjects\\Aplicacion\\src\\reports\\MOTOS.jpg"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="0" y="190" width="555" height="1" uuid="fc5708fb-6fbb-40c3-83eb-8af657d0afdf"/>
+			</line>
+			<image hAlign="Center" vAlign="Bottom">
+				<reportElement x="0" y="196" width="307" height="96" uuid="7c7521c3-97bc-4b16-9b87-23fd8be80557"/>
+				<imageExpression><![CDATA["C:\\Users\\jonatan\\Documents\\NetBeansProjects\\Aplicacion\\src\\reports\\OBSERVACIONES.jpg"]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="456" y="191" width="99" height="101" uuid="29136f47-dc14-432a-93df-21fd4f5bb23f"/>
+				<imageExpression><![CDATA["C:\\Users\\jonatan\\Documents\\NetBeansProjects\\Aplicacion\\src\\reports\\MOTO.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="295" y="251" width="102" height="16" uuid="5fb5c335-fb4e-4bb0-9d28-e5527a8af879"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[BATERIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="295" y="210" width="73" height="16" uuid="d30af683-3157-4586-9cae-5335444b763d"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[CLAXON]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="295" y="241" width="102" height="16" uuid="7990b967-88ef-4e2f-a96a-98022ebbefc7"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[FILTRO DE AIRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="295" y="260" width="103" height="16" uuid="529bacca-ad32-4eaa-a14f-940828ba5a09"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[LLAVES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="295" y="220" width="94" height="16" uuid="82325140-b012-4ec9-b03e-896d883cf358"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[TAPON DE ACEITE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="295" y="231" width="102" height="16" uuid="294198fa-9f48-4c2e-9159-30cbe448c4fd"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[TAPON DE RADIADOR]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="294" width="555" height="1" uuid="1bc3fad9-71ed-460c-8a98-28de79db931a"/>
+			</line>
+			<staticText>
+				<reportElement x="159" y="10" width="22" height="20" uuid="75081b1c-e6b0-438b-9ea9-27ad93d969a0"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[SI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="189" y="10" width="22" height="20" uuid="e361dbbc-1847-47bb-8f65-7c761337468b"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="508" y="10" width="22" height="20" uuid="bc721e7a-9bcc-4247-92ff-e0e7c9dffd05"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="478" y="10" width="22" height="20" uuid="1a56f02b-aeb0-4b12-bffa-540fedc9b277"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[SI]]></text>
+			</staticText>
+			<line>
+				<reportElement x="402" y="224" width="21" height="1" uuid="18f5762f-11c3-4346-9798-8bde9e0e6bb0"/>
+			</line>
+			<line>
+				<reportElement x="432" y="224" width="21" height="1" uuid="9e2f10c3-b1f2-4168-9bf6-e9e23df26824"/>
+			</line>
+			<line>
+				<reportElement x="432" y="234" width="21" height="1" uuid="3a40df18-ce28-4230-a282-e21d02e2c59b"/>
+			</line>
+			<line>
+				<reportElement x="402" y="234" width="21" height="1" uuid="1a9ca745-6dd0-4eb5-b6fb-2c1e2d621654"/>
+			</line>
+			<staticText>
+				<reportElement x="6" y="78" width="125" height="16" uuid="12636653-24c5-41e6-abca-c39d887f0393"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[-LUZ DE FRENO TRASERO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="189" y="56" width="21" height="1" uuid="98dc442e-311f-448f-96bf-55d4d24b8a61"/>
+			</line>
+			<line>
+				<reportElement x="189" y="44" width="21" height="1" uuid="a90811d2-de2a-4263-9fe0-c0b23bac5e14"/>
+			</line>
+			<line>
+				<reportElement x="159" y="44" width="21" height="1" uuid="fa47bac5-4897-43ac-9334-62b0221e80aa"/>
+			</line>
+			<line>
+				<reportElement x="159" y="56" width="21" height="1" uuid="87332e09-289c-4742-ab28-6befc89dd5df"/>
+			</line>
+			<line>
+				<reportElement x="189" y="68" width="21" height="1" uuid="7c1f1ed5-33df-4b2f-a082-6e040961b45a"/>
+			</line>
+			<line>
+				<reportElement x="159" y="68" width="21" height="1" uuid="6d655e6e-0ab9-44a1-b3a0-e6e8d60c7f9d"/>
+			</line>
+			<line>
+				<reportElement x="510" y="57" width="21" height="1" uuid="1cc9bb49-b913-40b4-9654-e74a2478da7f"/>
+			</line>
+			<line>
+				<reportElement x="510" y="44" width="21" height="1" uuid="14670196-bb96-45b7-8489-eb7cab0fc835"/>
+			</line>
+			<line>
+				<reportElement x="480" y="44" width="21" height="1" uuid="f004ca66-ff9e-49d3-85dd-f30be837b14d"/>
+			</line>
+			<line>
+				<reportElement x="510" y="69" width="21" height="1" uuid="1dce49be-1689-4c6f-a7c7-014eead79bca"/>
+			</line>
+			<line>
+				<reportElement x="480" y="80" width="21" height="1" uuid="92ded1ac-fb51-48bf-b2bc-571a96a85d27"/>
+			</line>
+			<line>
+				<reportElement x="480" y="69" width="21" height="1" uuid="b771c4df-82ee-41df-b579-19bbecc49be2"/>
+			</line>
+			<line>
+				<reportElement x="510" y="80" width="21" height="1" uuid="3c6846ac-a451-4510-961d-31c6745901a2"/>
+			</line>
+			<line>
+				<reportElement x="480" y="57" width="21" height="1" uuid="9fdfc4e3-9d7e-4b3c-9b3c-da874fdc3a1b"/>
+			</line>
+			<line>
+				<reportElement x="510" y="117" width="21" height="1" uuid="849587a2-6772-4c29-950a-cee20bf619cf"/>
+			</line>
+			<line>
+				<reportElement x="510" y="92" width="21" height="1" uuid="8f037c0a-2277-485b-bfad-841dd36b41b3"/>
+			</line>
+			<line>
+				<reportElement x="480" y="130" width="21" height="1" uuid="2dd83e5c-d57d-4c71-8540-663bd187b3e1"/>
+			</line>
+			<line>
+				<reportElement x="510" y="130" width="21" height="1" uuid="7c93e85b-b493-46d7-a300-f44d61529c54"/>
+			</line>
+			<line>
+				<reportElement x="480" y="92" width="21" height="1" uuid="f5c699b1-1aaf-4bb1-a55a-ada929e8f388"/>
+			</line>
+			<line>
+				<reportElement x="480" y="105" width="21" height="1" uuid="2fcecd39-f82b-44dd-a967-2034c48816a4"/>
+			</line>
+			<line>
+				<reportElement x="480" y="117" width="21" height="1" uuid="c5542d06-71cc-41f3-a158-a924ef16990d"/>
+			</line>
+			<line>
+				<reportElement x="510" y="105" width="21" height="1" uuid="eac6955d-dad5-42ee-b786-70fed5956196"/>
+			</line>
+			<line>
+				<reportElement x="432" y="255" width="21" height="1" uuid="6230ee8d-8303-4bc6-9fc5-4d54b5d783d2"/>
+			</line>
+			<line>
+				<reportElement x="432" y="245" width="21" height="1" uuid="92358a33-e8fb-4348-9940-696b4dfb9f51"/>
+			</line>
+			<line>
+				<reportElement x="402" y="245" width="21" height="1" uuid="ebafb614-2645-49c0-949e-111087d4cb24"/>
+			</line>
+			<line>
+				<reportElement x="402" y="255" width="21" height="1" uuid="7171a79e-91e8-41e5-8d98-2e4e06bdda98"/>
+			</line>
+			<line>
+				<reportElement x="402" y="274" width="21" height="1" uuid="0659b19c-1a85-4e71-9cef-306552c5864c"/>
+			</line>
+			<line>
+				<reportElement x="432" y="264" width="21" height="1" uuid="663498bc-c6e3-49f0-b6a6-1c5e9d012d46"/>
+			</line>
+			<line>
+				<reportElement x="402" y="264" width="21" height="1" uuid="86e6b0c5-0b1a-46cd-8e47-ff91bcd82e1b"/>
+			</line>
+			<line>
+				<reportElement x="432" y="274" width="21" height="1" uuid="80ee1d75-ae4d-436f-81ac-f8f5bca5b95d"/>
+			</line>
+			<line>
+				<reportElement x="189" y="104" width="21" height="1" uuid="ac2df1c0-4583-4610-ac28-fddfa628a2c6"/>
+			</line>
+			<line>
+				<reportElement x="189" y="80" width="21" height="1" uuid="c7ff92c9-3e74-48b2-bc6a-5a1ba5bead20"/>
+			</line>
+			<line>
+				<reportElement x="159" y="92" width="21" height="1" uuid="5616e25a-555c-4d23-8ff2-b97aacabcbf6"/>
+			</line>
+			<line>
+				<reportElement x="159" y="80" width="21" height="1" uuid="c425b819-1eda-4c38-ac50-2e4978b7e1e9"/>
+			</line>
+			<line>
+				<reportElement x="189" y="92" width="21" height="1" uuid="76b4c95e-d5db-49c4-9cc3-099f134374bc"/>
+			</line>
+			<line>
+				<reportElement x="159" y="104" width="21" height="1" uuid="f393d536-1264-48c0-8c30-1b91655d0960"/>
+			</line>
+			<line>
+				<reportElement x="159" y="164" width="21" height="1" uuid="fd02757f-85af-4e00-8b27-b6b4ea135703"/>
+			</line>
+			<line>
+				<reportElement x="189" y="140" width="21" height="1" uuid="25ddec76-e1b8-47ac-a67b-b330420b2d34"/>
+			</line>
+			<line>
+				<reportElement x="189" y="128" width="21" height="1" uuid="93b46340-7d24-476d-956b-088dfe15cbaf"/>
+			</line>
+			<line>
+				<reportElement x="159" y="116" width="21" height="1" uuid="c92ed342-f171-4cac-8097-a7efd7e9a4e2"/>
+			</line>
+			<line>
+				<reportElement x="159" y="140" width="21" height="1" uuid="b18aec29-9683-4dfa-92e0-2726460157d2"/>
+			</line>
+			<line>
+				<reportElement x="159" y="152" width="21" height="1" uuid="15b507dc-a361-418f-a278-204b812b2bc3"/>
+			</line>
+			<line>
+				<reportElement x="189" y="164" width="21" height="1" uuid="df71c822-161d-4f48-80bb-e2c04cd2b642"/>
+			</line>
+			<line>
+				<reportElement x="189" y="152" width="21" height="1" uuid="e48a54cb-0c21-4b81-a8ed-0582970d5e15"/>
+			</line>
+			<line>
+				<reportElement x="189" y="116" width="21" height="1" uuid="02a710d2-2a92-442f-ae60-e575675ebc2d"/>
+			</line>
+			<line>
+				<reportElement x="159" y="128" width="21" height="1" uuid="13301e99-5fc7-491e-84b2-761dc70ac5b5"/>
+			</line>
+			<line>
+				<reportElement x="480" y="140" width="21" height="1" uuid="fd1d4c7d-2d8b-4928-96a0-074e1a07b7b1"/>
+			</line>
+			<line>
+				<reportElement x="510" y="140" width="21" height="1" uuid="2bcab9a8-4b79-4008-977a-e3e90edec1c0"/>
+			</line>
+			<staticText>
+				<reportElement x="431" y="193" width="22" height="20" uuid="df2b8217-374a-4c2e-b38a-181289cb79d6"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="401" y="193" width="22" height="20" uuid="5e89fa5d-7447-49b2-b0cf-e49914f0f909"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[SI]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="400" y="211" width="56" height="20" uuid="ee5eb4ae-b8ae-46a4-8683-b8dbff854025"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{claxon}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="10" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="15" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="252" splitType="Stretch">
+			<staticText>
+				<reportElement x="15" y="2" width="377" height="20" uuid="98e705a8-db50-4fdb-b067-101fe8295f28"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[LAS CLAUSULAS DEL CONTRATO SE DESCRIBEN AL REVERSO.  LEALAS CUIDADOSAMENTE.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="376" y="79" width="129" height="17" uuid="f51206c7-f0aa-4c62-a8b7-697a3cbd743e"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[FECHA Y FIRMA DEL CLIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="376" y="84" width="125" height="20" uuid="231725b3-ea16-4e35-9ec8-4044afdb9fd3"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[ACEPTADO EL PRESUPUESTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="122" width="468" height="20" uuid="6d477b33-9955-48d1-be11-87377151715b"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[DEBO Y PAGARE INCONDICIONALMENTE A LA ORDEN Y EN EL DOMICILIO DEL PROVEEDOR EL IMPORTE DE ESTE DOCUMENTO EL DIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="177" y="135" width="378" height="20" uuid="6b42abc1-7354-473e-8fdb-8cdd377fe64b"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[% MENSUAL HASTA LA FECHA EN QUE SE HAGA EFECTIVO EL PAGO.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="32" width="234" height="20" uuid="7b9c2ee0-a07f-4961-97de-6281dbe1b148"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[EL COSTO DE REVISION Y DIAGNOSTICO SERA DE $]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="12" width="549" height="20" uuid="851be315-45cb-4332-844c-185949b357d1"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[EN CASO DE QUE EL PRESUPUESTO NO SE ACPTADO, EL CONSUMIDOR PAGARA EXCLUSIVAMENTE EL CONSTO POR LA REVISION Y DIAGNOSTICO Y EL]]></text>
+			</staticText>
+			<line>
+				<reportElement x="224" y="51" width="239" height="1" uuid="7d984f28-3b20-412e-9a4b-1c7c9ca801a3"/>
+			</line>
+			<line>
+				<reportElement x="115" y="151" width="59" height="1" uuid="fa2f160c-ebc5-40bb-998a-efc3852d66c4"/>
+			</line>
+			<line>
+				<reportElement x="41" y="83" width="139" height="1" uuid="51743661-efce-43f9-bcb5-499b1d3ce742"/>
+			</line>
+			<staticText>
+				<reportElement x="62" y="79" width="100" height="17" uuid="15de92bf-4296-465e-8fb6-061fee40de25"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[FIRMA DEL PROVEEDOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="22" width="435" height="20" uuid="ea506a59-617a-4533-9dd4-5c97218f5db2"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[PROVEDOR SE OBLIGARA A DEVOLVER EL EQUIPO EN LAS CONDICIONES EN LAS QUE LE FUE ENTREGADO.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="479" y="139" width="76" height="1" uuid="627d464e-a772-4280-b8a8-aec7abe51ceb"/>
+			</line>
+			<staticText>
+				<reportElement x="11" y="95" width="544" height="20" uuid="c7cf05e9-1ec9-4321-9f37-d0090830e48f"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[EL PRESENTE DOCUMENTO ES EXPEDIDO POR EL CLIENTE COMO PAGARE A FAVOR DEL PROVEEDOR Y LOS DATOS QUE SE CONTIENEN EN EL MISMO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="104" width="155" height="20" uuid="c323d32e-7cb8-4bf9-8fe7-a3294dba8d03"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[ESTABLECEN COMO REQUISITO DEL TITULO.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="369" y="84" width="139" height="1" uuid="6b15f0d2-a579-40aa-8300-1cf2262a04de"/>
+			</line>
+			<staticText>
+				<reportElement x="10" y="133" width="100" height="20" uuid="b2880c56-46d6-45bc-867c-45b281a513a5"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[CAUSANDO UN INTERES DEL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="144" width="100" height="20" uuid="51851757-983b-4db6-893c-53f832d6a184"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[PAGO NO NEGOCIABLE.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="159" y="184" width="218" height="23" uuid="f19a4070-9c22-4db9-8e30-158a0cd9143f"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[PROCURADURIA FEDERAL DEL CONSUMIDOR REGISTRO PUBLICO DE CONTRATO ADHESION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="207" width="174" height="20" uuid="9acab111-c5dc-422b-a6f2-b793d48ad80b"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Contrato aprovado e inscrito con el NO.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="177" y="225" width="100" height="1" uuid="18b02595-0b51-46b9-a26b-a6478d33f7d5"/>
+			</line>
+			<staticText>
+				<reportElement x="180" y="208" width="100" height="20" uuid="3e648b98-3faa-43e3-b99e-20284ca3bacb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[360/34/2009]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="214" width="27" height="14" uuid="90a4e1f6-2112-4365-9f5e-6fca6aeaa517"/>
+				<text><![CDATA[Libro ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="310" y="225" width="38" height="1" uuid="f176e61e-0c9d-4c3c-9b3e-2134249f1583"/>
+			</line>
+			<staticText>
+				<reportElement x="306" y="208" width="51" height="20" uuid="7eab998e-902e-4caf-8f3c-1912976fa611"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[54 B]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="213" width="46" height="14" uuid="30612e5f-7be9-49ac-a21f-e80856fbaca1"/>
+				<text><![CDATA[Volúmen ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="402" y="225" width="100" height="1" uuid="09d2cbb5-be97-489c-a4c2-e78b2ebf0d54"/>
+			</line>
+			<staticText>
+				<reportElement x="397" y="208" width="100" height="20" uuid="8cf68117-5172-470a-950c-bce6f75162e3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[234-R/2009]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="231" width="35" height="16" uuid="979f7c12-bd73-44dd-933c-d0a7e20552aa"/>
+				<text><![CDATA[Fojas]]></text>
+			</staticText>
+			<line>
+				<reportElement x="40" y="243" width="100" height="1" uuid="93da293b-734c-40fb-8ac3-c0a051533a59"/>
+			</line>
+			<staticText>
+				<reportElement x="60" y="232" width="60" height="20" uuid="404b47c1-6ccb-422f-b5a6-801bfb9caae6"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[237655]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="231" width="64" height="20" uuid="33f87129-bf14-48ee-82ec-33190d0163c5"/>
+				<text><![CDATA[Expediente]]></text>
+			</staticText>
+			<line>
+				<reportElement x="189" y="243" width="100" height="1" uuid="96030461-9dd6-47c1-b095-94466cc66c41"/>
+			</line>
+			<staticText>
+				<reportElement x="198" y="232" width="82" height="20" uuid="c63af0a6-755c-46ae-9ddc-0710afbcc1d7"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[4ta/3er/2009]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

@@ -17,13 +17,13 @@ public class Servicio {
  private String observaciones;
 
     public Servicio() {
+        
     }
 
-    public Servicio(String servicio, String entrada, String salida, Double precio, String observaciones) {
+    public Servicio(String servicio, String entrada, String salida,  String observaciones) {
         this.servicio = servicio;
         this.entrada = entrada;
         this.salida = salida;
-        this.precio = precio;
         this.observaciones = observaciones;
     }
 

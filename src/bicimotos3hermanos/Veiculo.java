@@ -14,17 +14,17 @@ public class Veiculo {
   private String motor;
   private String placas;
   private String kilometrage;
-  private String modelo;
+  private String equipo;
 
     public Veiculo() {
     }
 
-    public Veiculo(String serie, String motor, String placas, String kilometrage, String modelo) {
+    public Veiculo(String serie, String motor, String placas, String kilometrage, String equipo) {
         this.serie = serie;
         this.motor = motor;
         this.placas = placas;
         this.kilometrage = kilometrage;
-        this.modelo = modelo;
+        this.equipo = equipo;
     }
 
     /**
@@ -84,17 +84,17 @@ public class Veiculo {
     }
 
     /**
-     * @return the modelo
+     * @return the equipo
      */
-    public String getModelo() {
-        return modelo;
+    public String getEquipo() {
+        return equipo;
     }
 
     /**
-     * @param modelo the modelo to set
+     * @param modelo the equipo to set
      */
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
+    public void setEquipo(String equipo) {
+        this.equipo = equipo;
     }
   
 }

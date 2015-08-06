@@ -5,7 +5,12 @@
  */
 package bicimotos3hermanos;
 
+import Conection.Conector;
 import background.Background;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.Document;
+import java.awt.AWTException;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -14,12 +19,24 @@ import java.awt.Dimension;
 import static java.awt.Frame.ICONIFIED;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -27,17 +44,16 @@ import javax.swing.JPopupMenu;
  */
 public class MainFrom extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MainFrom
-     */
-    private Background background = new Background("/background/fondo2.png");
+    private Background background = new Background("/background/chido.png");
     private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private boolean b = true;
-    private int x, y;
+    private int cordx, cordy;
     private Color colorActual;
     private JMenuItem Aj,mn,cer;
     private JPopupMenu menu;
-    
+    private HoraFecha hF;
+    private JPanel Panel;
+    private JLabel logo;
     public MainFrom() {
         setUndecorated(true);
         setContentPane(background);
@@ -45,8 +61,6 @@ public class MainFrom extends javax.swing.JFrame {
         CursorHand();
         System.out.println("tu resolucion es " + screenSize.width + "x" + screenSize.height);
         this.setSize(screenSize.width, screenSize.height);
-        Panel.setBackground(new Color(0, 0, 0, 10));
-        //Panel.setLocation(0, 0);//setSize(822, 749);
         barraTitulo.setBackground(new Color(204,204,204));
         colorActual=barraTitulo.getBackground();
         eventos();
@@ -55,6 +69,18 @@ public class MainFrom extends javax.swing.JFrame {
         Aj= new JMenuItem();
         mn= new JMenuItem();
         cer= new JMenuItem();
+        hF = new HoraFecha();
+        lbHora.setText(hF.getFecha());
+        Panel = new JPanel();
+        
+        Panel.setOpaque(false);
+        Panel.setBounds(220, 35, 830, 700);
+       // Panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        this.add(Panel);
+        logo = new JLabel(new ImageIcon(getClass().getResource("/Images/logo_bicimoto.png")));
+        logo.setBounds(2,30,222 , 110);
+        this.add(logo);
+        
     }
     
     public void CursorHand() {
@@ -90,10 +116,20 @@ public class MainFrom extends javax.swing.JFrame {
                 Minimizar();
             }
         });
+         jButton3.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                save();
+                validate();
+                
+            }
+        });
           btCliente.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                Panel.removeAll();
                 registros reg = new registros();
                 int witdh = Panel.getWidth();
                 int height = Panel.getHeight();
@@ -105,7 +141,23 @@ public class MainFrom extends javax.swing.JFrame {
             }
         });
        
-        
+        jButton2.addActionListener(new ActionListener() {
+
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 //Conector con = new Conector();
+                 //con.Conectar();
+                Panel.removeAll();
+                Buscar buscar = new Buscar();
+                int witdh = Panel.getWidth();
+                int height = Panel.getHeight();
+                Panel.setLayout(new BorderLayout());//Panel.setSize(822, 749);
+                buscar.setPreferredSize(new Dimension(witdh, height));
+                Panel.add("Center", buscar);
+                Panel.updateUI();
+                Panel.validate();
+             }
+         });
     }
     public void cerrar() {
         System.exit(0);
@@ -177,6 +229,57 @@ public class MainFrom extends javax.swing.JFrame {
         });
     }
     
+    String formato = "png";
+    BufferedImage image;
+    JFileChooser filechooser;
+    public void save(){
+    String file ="";
+    filechooser = new JFileChooser();
+        try {
+            if (filechooser.showSaveDialog(null)==JFileChooser.APPROVE_OPTION) {
+             file = filechooser.getSelectedFile().getAbsolutePath();
+             foto(file+".png");
+                toPFD(file+".pdf", file+".png");
+            }
+        } catch (Exception e) {
+        }
+    
+    }
+    public void foto(String file) {
+    try {                                                                   //el this se refiere al panel 
+        image = new Robot().createScreenCapture(new Rectangle(Panel.getLocationOnScreen().x, Panel.getLocationOnScreen().y, Panel.getWidth(), Panel.getHeight()));
+                         
+        } catch (AWTException ex) {
+           System.out.println("e"+ex);
+        }try {
+            
+            ImageIO.write(image, formato, new File(file));
+            System.out.println("Imagen guardada");
+        } catch (IOException e) {
+        }
+    }
+    public void toPFD(String out, String in){
+        try{
+    //Create Document Object
+    Document convertJpgToPdf = new Document();
+    //Create PdfWriter for Document to hold physical file
+    PdfWriter.getInstance(convertJpgToPdf, new FileOutputStream(out));//"c:\\java\\ConvertImagetoPDF.pdf"
+    convertJpgToPdf.open();
+    //Get the input image to Convert to PDF
+    Image convertJpg=Image.getInstance(in);
+    convertJpg.setAbsolutePosition(0f, 260f);//posicion en x,y
+    
+    convertJpg.scalePercent(72, 85);//porcentaje en escala 
+    //Add image to Document
+    convertJpgToPdf.add(convertJpg);
+    //Close Document
+    convertJpgToPdf.close();
+    System.out.println("Successfully Converted JPG to PDF in iText");
+}
+catch (Exception i1){
+    i1.printStackTrace();
+}
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -191,17 +294,22 @@ public class MainFrom extends javax.swing.JFrame {
         btAjustar = new javax.swing.JButton();
         btCerrar = new javax.swing.JButton();
         btMenuPanel = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        lbHora = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        btCliente = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        btCliente = new javax.swing.JButton();
-        Panel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         barraTitulo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -281,18 +389,25 @@ public class MainFrom extends javax.swing.JFrame {
                 .addComponent(btCerrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1_50.png"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton1.setFocusPainted(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setIconTextGap(1);
-        jButton1.setInheritsPopupMenu(true);
-        jButton1.setPreferredSize(new java.awt.Dimension(70, 70));
-        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1 - copia.png"))); // NOI18N
-        jButton1.setRequestFocusEnabled(false);
-        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1.png"))); // NOI18N
+        lbHora.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbHora.setForeground(new java.awt.Color(102, 102, 102));
+        lbHora.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+
+        btCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_7 - copia - copia.png"))); // NOI18N
+        btCliente.setToolTipText("");
+        btCliente.setBorderPainted(false);
+        btCliente.setContentAreaFilled(false);
+        btCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btCliente.setFocusPainted(false);
+        btCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btCliente.setIconTextGap(1);
+        btCliente.setInheritsPopupMenu(true);
+        btCliente.setPreferredSize(new java.awt.Dimension(70, 70));
+        btCliente.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_7 - copia.png"))); // NOI18N
+        btCliente.setRequestFocusEnabled(false);
+        btCliente.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_7.png"))); // NOI18N
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_2 - copia - copia.png"))); // NOI18N
         jButton2.setBorderPainted(false);
@@ -320,28 +435,44 @@ public class MainFrom extends javax.swing.JFrame {
         jButton3.setRequestFocusEnabled(false);
         jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_3.png"))); // NOI18N
 
-        btCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_7 - copia - copia.png"))); // NOI18N
-        btCliente.setBorderPainted(false);
-        btCliente.setContentAreaFilled(false);
-        btCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btCliente.setFocusPainted(false);
-        btCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btCliente.setIconTextGap(1);
-        btCliente.setInheritsPopupMenu(true);
-        btCliente.setPreferredSize(new java.awt.Dimension(70, 70));
-        btCliente.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_7 - copia.png"))); // NOI18N
-        btCliente.setRequestFocusEnabled(false);
-        btCliente.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_7.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1_50.png"))); // NOI18N
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton1.setFocusPainted(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setIconTextGap(1);
+        jButton1.setInheritsPopupMenu(true);
+        jButton1.setPreferredSize(new java.awt.Dimension(70, 70));
+        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1 - copia.png"))); // NOI18N
+        jButton1.setRequestFocusEnabled(false);
+        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1.png"))); // NOI18N
 
-        javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
-        Panel.setLayout(PanelLayout);
-        PanelLayout.setHorizontalGroup(
-            PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 457, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        PanelLayout.setVerticalGroup(
-            PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -350,50 +481,39 @@ public class MainFrom extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(barraTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(486, 486, 486)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(barraTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbHora, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 89, Short.MAX_VALUE))
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(41, 41, 41))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void barraTituloMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barraTituloMousePressed
-         x = evt.getX();
-        y = evt.getY();
+        cordx = evt.getX();
+        cordy = evt.getY();
         this.setCursor(new Cursor(Cursor.MOVE_CURSOR));
         barraTitulo.setBackground(new Color(75,144,189));
         btMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Minimizar_Verde.png")));
@@ -404,11 +524,13 @@ public class MainFrom extends javax.swing.JFrame {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_2.png")));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_3.png")));
         btCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_7.png")));
+        lbHora.setForeground(new Color(75,144,189));
+        
     }//GEN-LAST:event_barraTituloMousePressed
 
     private void barraTituloMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barraTituloMouseDragged
        Point point = MouseInfo.getPointerInfo().getLocation(); 
-       this.setLocation(point.x - x, point.y - y); 
+       this.setLocation(point.x - cordx, point.y - cordy); 
     }//GEN-LAST:event_barraTituloMouseDragged
 
     private void barraTituloMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barraTituloMouseReleased
@@ -422,7 +544,13 @@ public class MainFrom extends javax.swing.JFrame {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_2 - copia - copia.png")));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_3 - copia - copia.png")));
         btCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_7 - copia - copia.png")));
+        lbHora.setForeground(new Color(102,102,102));
     }//GEN-LAST:event_barraTituloMouseReleased
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+       
+               
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -460,7 +588,6 @@ public class MainFrom extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Panel;
     private javax.swing.JPanel barraTitulo;
     private javax.swing.JButton btAjustar;
     private javax.swing.JButton btCerrar;
@@ -471,7 +598,8 @@ public class MainFrom extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbHora;
     // End of variables declaration//GEN-END:variables
     
 }
