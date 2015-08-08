@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -35,11 +37,28 @@ public class Conector {
                 //creamos un enlace hacia la base de datos
                 link = (Connection) DriverManager.getConnection(this.url, this.user, this.pass);///(Connection) DriverManager.getConnection(this.url, this.user, this.pass);
                 if (link!=null) {
-                        JOptionPane.showMessageDialog(null, "Se establecio una conexion con la base de datos "+bd);
+               //  JOptionPane.showMessageDialog(null, "Se establecio una conexion con la base de datos "+bd);
+                    System.out.println("Conexion Exitosa ");
                  }
         }catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error de conexion ");
+               // JOptionPane.showMessageDialog(null, "Error de conexion ");
                 System.out.println("Error de conexion ");
+        }
+    }
+    public  void Conectar(JLabel label){
+       try {
+                //cargamos el Driver Mysql
+                Class.forName("com.mysql.jdbc.Driver");
+                //creamos un enlace hacia la base de datos
+                link = (Connection) DriverManager.getConnection(this.url, this.user, this.pass);///(Connection) DriverManager.getConnection(this.url, this.user, this.pass);
+                if (link!=null) {
+                 //JOptionPane.showMessageDialog(null, "Se establecio una conexion con la base de datos "+bd);
+                    label.setEnabled(true);
+                 }
+        }catch (Exception e) {
+               // JOptionPane.showMessageDialog(null, "Error de conexion ");
+                System.out.println("Error de conexion ");
+                label.setEnabled(false);
         }
     }
 /*-------------------------------------------------------------------------------------------------------------------------*/    
@@ -58,6 +77,7 @@ public class Conector {
     public Connection getConexion(){
         return this.link;
     }
+    
 /*-------------------------------------------------------------------------------------------------------------------------*/    
 /*-------------------------------------------------------------------------------------------------------------------------*/    
 
