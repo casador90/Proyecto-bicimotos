@@ -5,7 +5,7 @@
  */
 package bicimotos3hermanos;
 
-import Conection.Conector;
+import Impresion.ImpresionImage;
 import background.Background;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -36,7 +36,6 @@ import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
 
 /**
  *
@@ -84,7 +83,7 @@ public class MainFrom extends javax.swing.JFrame {
     }
     
     public void CursorHand() {
-        jButton1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btAyuda.setCursor(new Cursor(Cursor.HAND_CURSOR));
         jButton2.setCursor(new Cursor(Cursor.HAND_CURSOR));
         jButton3.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btCliente.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -156,6 +155,20 @@ public class MainFrom extends javax.swing.JFrame {
                 Panel.add("Center", buscar);
                 Panel.updateUI();
                 Panel.validate();
+             }
+         });
+        btAyuda.addActionListener(new ActionListener() {
+
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 BufferedImage imgprint_=null;
+                 try {
+                  imgprint_=ImageIO.read(new File("img002.jpg"));
+                  ImpresionImage imgprint = new ImpresionImage(imgprint_);
+                 }catch(IOException ex){
+                     System.out.println("No se enconyto la img");
+                 }
+                //ImpresionImage imgprint = new ImpresionImage(image);
              }
          });
     }
@@ -300,7 +313,7 @@ catch (Exception i1){
         btCliente = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btAyuda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -435,18 +448,18 @@ catch (Exception i1){
         jButton3.setRequestFocusEnabled(false);
         jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_3.png"))); // NOI18N
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1_50.png"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton1.setFocusPainted(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setIconTextGap(1);
-        jButton1.setInheritsPopupMenu(true);
-        jButton1.setPreferredSize(new java.awt.Dimension(70, 70));
-        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1 - copia.png"))); // NOI18N
-        jButton1.setRequestFocusEnabled(false);
-        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1.png"))); // NOI18N
+        btAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/ayuda2.png"))); // NOI18N
+        btAyuda.setBorderPainted(false);
+        btAyuda.setContentAreaFilled(false);
+        btAyuda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btAyuda.setFocusPainted(false);
+        btAyuda.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btAyuda.setIconTextGap(1);
+        btAyuda.setInheritsPopupMenu(true);
+        btAyuda.setPreferredSize(new java.awt.Dimension(70, 70));
+        btAyuda.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/ayuda3.png"))); // NOI18N
+        btAyuda.setRequestFocusEnabled(false);
+        btAyuda.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/ayuda1.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -458,7 +471,7 @@ catch (Exception i1){
                     .addComponent(btCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -471,7 +484,7 @@ catch (Exception i1){
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
@@ -520,7 +533,7 @@ catch (Exception i1){
         btAjustar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/ajustar_Verde.png")));
         btMenuPanel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Maximizar_verde.png")));
         btCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Cerrar_Rojo.png")));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1.png")));
+        btAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1.png")));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_2.png")));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_3.png")));
         btCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_7.png")));
@@ -540,7 +553,7 @@ catch (Exception i1){
         btAjustar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/ajustar_Gris.png")));
         btMenuPanel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Maximizar_Gris.png")));
         btCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_vent/Cerrar_gris.png")));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1_50.png")));
+        btAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_1_50.png")));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_2 - copia - copia.png")));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_3 - copia - copia.png")));
         btCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/her_7 - copia - copia.png")));
@@ -590,11 +603,11 @@ catch (Exception i1){
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barraTitulo;
     private javax.swing.JButton btAjustar;
+    private javax.swing.JButton btAyuda;
     private javax.swing.JButton btCerrar;
     private javax.swing.JButton btCliente;
     private javax.swing.JButton btMenuPanel;
     private javax.swing.JButton btMinimizar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
