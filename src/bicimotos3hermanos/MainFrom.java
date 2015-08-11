@@ -6,6 +6,7 @@
 package bicimotos3hermanos;
 
 import Impresion.ImpresionImage;
+import ayuda.informacion;
 import background.Background;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -84,15 +85,19 @@ public class MainFrom extends javax.swing.JFrame {
     
     public void CursorHand() {
         btAyuda.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btAyuda.setToolTipText("Ayuda");
         jButton2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jButton2.setToolTipText("Buscar cliente");
         jButton3.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jButton3.setToolTipText("Captura");
         btCliente.setCursor(new Cursor(Cursor.HAND_CURSOR));
+         btCliente.setToolTipText("Registro");
         btCerrar.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btMinimizar.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btAjustar.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btMenuPanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
-    public void eventos(){
+       public void eventos(){
          btCerrar.addActionListener(new ActionListener() {
 
             @Override
@@ -161,13 +166,23 @@ public class MainFrom extends javax.swing.JFrame {
 
              @Override
              public void actionPerformed(ActionEvent e) {
-                 BufferedImage imgprint_=null;
-                 try {
-                  imgprint_=ImageIO.read(new File("img002.jpg"));
-                  ImpresionImage imgprint = new ImpresionImage(imgprint_);
-                 }catch(IOException ex){
-                     System.out.println("No se enconyto la img");
-                 }
+                 Panel.removeAll();
+            informacion inf = new informacion();
+            int witdh = Panel.getWidth();
+            int height = Panel.getHeight();
+            Panel.setLayout(new BorderLayout());//Panel.setSize(822, 749);
+            inf.setPreferredSize(new Dimension(witdh,height));
+            Panel.add("Center", inf);
+            Panel.updateUI();
+            Panel.validate();
+            
+                 // BufferedImage imgprint_=null;
+                // try {
+                 // imgprint_=ImageIO.read(new File("img002.jpg"));
+                  //ImpresionImage imgprint = new ImpresionImage(imgprint_);
+                // }catch(IOException ex){
+                 //    System.out.println("No se enconyto la img");
+               //  }
                 //ImpresionImage imgprint = new ImpresionImage(image);
              }
          });

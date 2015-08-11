@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
 public class Buscar extends javax.swing.JPanel {
     Conector con;
     DefaultTableModel modelo;
-    private JLabel fondo = new JLabel(new ImageIcon(getClass().getResource("/background/fondo_p_1.png")));;
+    private JLabel fondo = new JLabel(new ImageIcon(getClass().getResource("/background/fondo_p_1.png")));
     public Buscar() {
         initComponents();
         String Columnas[]={"No Orden","Nombre","Placas","Servicio","Fecha","Hora"};
